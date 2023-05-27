@@ -11,9 +11,7 @@ type Props = {
 };
 
 const ButtonColumn = (props: Props) => {
-  console.log("MAinHeight", props.mainHeight);
   return (
-    // <div className="flex flex-col gap-6 px-6 pb-48 ">
     <div
       className={`flex flex-col gap-6 overflow-auto 
      

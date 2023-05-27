@@ -24,6 +24,9 @@ const ClientPage = () => {
       isChecked: false,
     }));
 
+  const [kemalButtons, setKemalButtons] = useState<TButton[]>([]);
+  const [tayyipButtons, setTayyipButtons] = useState<TButton[]>([]);
+
   useEffect(() => {
     if (headerRef.current && footerRef.current) {
       setMainHeight(
@@ -32,18 +35,17 @@ const ClientPage = () => {
           footerRef.current?.offsetHeight
       );
     }
+    setKemalButtons(
+      localStorage.getItem("kemalButtons") === null
+        ? createButtons()
+        : JSON.parse(localStorage.getItem("kemalButtons")!)
+    );
+    setTayyipButtons(
+      localStorage.getItem("tayyipButtons") === null
+        ? createButtons()
+        : JSON.parse(localStorage.getItem("tayyipButtons")!)
+    );
   }, []);
-
-  const [kemalButtons, setKemalButtons] = useState<TButton[]>(
-    localStorage.getItem("kemalButtons") === null
-      ? createButtons()
-      : JSON.parse(localStorage.getItem("kemalButtons")!)
-  );
-  const [tayyipButtons, setTayyipButtons] = useState<TButton[]>(
-    localStorage.getItem("tayyipButtons") === null
-      ? createButtons()
-      : JSON.parse(localStorage.getItem("tayyipButtons")!)
-  );
 
   const handleButtonToggle = (buttons: TButton[], id: number) => {
     return buttons.map((button) =>
