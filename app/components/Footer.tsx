@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { TButton } from "../ClientPage";
 
 type Props = {
@@ -8,18 +8,21 @@ type Props = {
   setInvalidVotes: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Footer = (props: Props) => {
+const Footer = forwardRef<HTMLDivElement, Props>(function Footer(
+  props: Props,
+  ref
+) {
   return (
-    <footer className="border-white bg-black py-4 min-w-full h-24">
+    <footer className="py-4 min-w-full h-24" ref={ref}>
       <div className="grid grid-cols-2 text-center gap-3">
         <span>
-          Toplam:
+          Toplam:{" "}
           <span className="text-xl">
             {props.kemalButtons.filter((button) => button.isChecked).length}
           </span>
         </span>
         <span>
-          Toplam:
+          Toplam:{" "}
           <span className="text-xl">
             {props.tayyipButtons.filter((button) => button.isChecked).length}
           </span>
@@ -36,6 +39,6 @@ const Footer = (props: Props) => {
       </div>
     </footer>
   );
-};
+});
 
 export default Footer;

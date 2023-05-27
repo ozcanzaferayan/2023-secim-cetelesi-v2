@@ -6,13 +6,20 @@ type Props = {
   buttons: TButton[];
   type: "Kemal" | "Tayyip";
   className?: string;
+  mainHeight: number;
   handleClick: (id: number, candidate: "Kemal" | "Tayyip") => void;
 };
 
 const ButtonColumn = (props: Props) => {
+  console.log("MAinHeight", props.mainHeight);
   return (
     // <div className="flex flex-col gap-6 px-6 pb-48 ">
-    <div className={`flex flex-col gap-6 overflow-auto h-96  px-3`}>
+    <div
+      className={`flex flex-col gap-6 overflow-auto 
+     
+      px-3`}
+      style={{ height: props.mainHeight + "px" }}
+    >
       {props.buttons.map((button, i) => (
         <Button
           id={props.type + "-button-" + i}

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import CandidateHeader from "./CandidateHeader";
 
-const Header = () => {
+const Header = forwardRef<HTMLHeadingElement>(function Header(props, ref) {
   return (
-    <header className="flex flex-col gap-3 py-3">
+    <header className="flex flex-col gap-3 py-3" ref={ref}>
       <h2 className="text-2xl font-semibold text-center">
         2023 Cumhurbaşkanı seçimi çetelesi
       </h2>
@@ -19,6 +19,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;

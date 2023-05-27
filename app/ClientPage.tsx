@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "./components/Button";
 import ButtonColumn from "./components/ButtonColumn";
 import CandidateHeader from "./components/CandidateHeader";
@@ -13,14 +13,26 @@ export type TButton = {
 };
 
 const ClientPage = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [mainHeight, setMainHeight] = useState(0);
   const refAudio = useRef<HTMLAudioElement>(null);
   const [invalidVotes, setInvalidVotes] = useState(0);
   const createButtons = () =>
-    Array.from({ length: 50 }).map((_, i) => ({
+    Array.from({ length: 400 }).map((_, i) => ({
       id: i,
       isChecked: false,
     }));
+
+  useEffect(() => {
+    if (headerRef.current && footerRef.current) {
+      setMainHeight(
+        window.innerHeight -
+          headerRef.current?.offsetHeight -
+          footerRef.current?.offsetHeight
+      );
+    }
+  }, []);
 
   const [kemalButtons, setKemalButtons] = useState<TButton[]>(
     localStorage.getItem("kemalButtons") === null
@@ -65,20 +77,23 @@ const ClientPage = () => {
   };
   return (
     <>
-      <Header />
+      <Header ref={headerRef} />
       <main className="flex flex-1 justify-around items-center overflow-hidden gap-3">
         <ButtonColumn
+          mainHeight={mainHeight}
           type="Kemal"
           buttons={kemalButtons}
           handleClick={handleClick}
         />
         <ButtonColumn
           type="Tayyip"
+          mainHeight={mainHeight}
           buttons={tayyipButtons}
           handleClick={handleClick}
         />
       </main>
       <Footer
+        ref={footerRef}
         invalidVotes={invalidVotes}
         setInvalidVotes={setInvalidVotes}
         kemalButtons={kemalButtons}
