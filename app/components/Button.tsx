@@ -2,12 +2,14 @@ import React from "react";
 type Props = {
   children: React.ReactNode;
   isChecked: boolean;
+  id: string;
   onClick?: () => void;
 };
 
 const Button = (props: Props) => {
   return (
     <button
+      id={props.id}
       onClick={props.onClick}
       className={`button w-24 h-16 ${
         props.isChecked ? "bg-blue-500" : "bg-blue-100"
@@ -18,11 +20,11 @@ const Button = (props: Props) => {
           : "active:[box-shadow:0_0px_0_0_#9cc1ff,0_0px_0_0_#1b70f841] [box-shadow:0_10px_0_0_#9cc1ff,0_15px_0_0_#1b70f841]"
       }  
       rounded-lg cursor-pointer select-none
-active:translate-y-2  
-active:border-b-[0px]
-transition-all duration-150 
-border-b-[1px] 
-${props.isChecked ? "border-blue-400" : "border-blue-300"}  
+      active:translate-y-2  
+      active:border-b-[0px]
+      transition-all duration-150 
+      border-b-[1px] 
+      ${props.isChecked ? "border-blue-400" : "border-blue-300"}  
 
 `}
     >

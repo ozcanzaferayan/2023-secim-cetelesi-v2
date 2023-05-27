@@ -15,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`overflow-hidden ${inter.className}`}>{children}</body>
+      <body
+        style={{ height: "-webkit-fill-available" }}
+        className={`flex flex-col h-screen overflow-hidden ${inter.className}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
