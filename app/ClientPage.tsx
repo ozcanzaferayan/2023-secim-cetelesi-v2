@@ -101,6 +101,7 @@ const ClientPage = () => {
         kemalButtons={kemalButtons}
         tayyipButtons={tayyipButtons}
       />
+      <audio ref={refAudio} src="/bubble.wav" />
     </>
   );
 };
